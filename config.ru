@@ -1,10 +1,12 @@
 require_relative "./config/environment"
+## the faker gem is here for seeding
+
 
 # Allow CORS (Cross-Origin Resource Sharing) requests
 use Rack::Cors do
   allow do
-    origins '*'
-    resource '*', headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
+    origins "*"
+    resource "*", headers: :any, methods: [:get, :post, :delete, :put, :patch, :options, :head]
   end
 end
 
