@@ -30,7 +30,8 @@ gem "rake", "~> 13.0"
 
 # Provides functionality to interact with a SQLite3 database
 # gem "sqlite3", "~> 1.4"
-gem 'pg'
+
+
 
 # Require all files in a folder
 gem "require_all", "~> 3.0"
