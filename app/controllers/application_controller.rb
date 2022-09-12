@@ -1,31 +1,48 @@
-require "pry"
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add routes
-  get '/messages' do
-    messages = Message.all
-    messages.to_json
+  get "/" do
+    { message: "Welcome to the Home Page" }.to_json 
   end
 
-  post '/messages' do
-    new_message =  Message.create(username: params[:username], body: params[:body])
-    new_message.to_json
-  end
-
-  patch '/messages/:id' do
-    message = Message.find(params[:id])
-    message.update(
-      body: params[:body]
+  patch "/students/:id" do
+    student = Student.find(params[:id])
+    student.update(
+      year_at_school: student.year_at_school + 1
     )
-    message.to_json
+    if student.year_at_school == 8
+      student.destroy
+    end 
+    student.to_json
+  end 
+
+  post '/students' do 
+    student = Student.create( 
+      name: params[:name],
+      year_at_school: 1,
+      house_id: rand(1..4)
+    )
+    student.to_json
   end
 
+  delete "/students/:id" do 
+    student = Student.find(params[:id])
+    student.destroy
+    student.to_json
+  end 
 
-  delete '/messages/:id' do
-    message = Message.find(params[:id])
-    message.destroy
-    message.to_json
+  get "/houses" do 
+    houses = House.all
+    houses.to_json(only: [:name, :id])
   end
+
+  get "/houses/:id" do 
+   students = House.find(params[:id]).students
+   students.to_json(only: [:name, :id])
+  end 
   
+  get "/students" do 
+    students = Student.all
+    students.to_json(only: [:name, :id])
+  end
 end
