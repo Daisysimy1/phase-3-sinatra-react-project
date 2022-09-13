@@ -29,7 +29,7 @@ gem "sinatra-activerecord"
 gem "rake", "~> 13.0"
 
 # Provides functionality to interact with a SQLite3 database
-# gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 1.4"
 
 
 
@@ -56,3 +56,8 @@ group :test do
   gem "rspec", "~> 3.10"
   gem "rspec-json_expectations", "~> 2.2"
 end
+
+# group :production do
+# gem 'pg', '~1.4', '>=1.4.3'
+# end
+"https://rubygems.org"
